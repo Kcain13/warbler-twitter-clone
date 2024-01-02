@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-md-center">
+  <div class="col-md-4">
+    <h2 class="join-message">Edit Your Profile.</h2>
+    <form method="POST" id="user_form">
+      {{ form.hidden_tag() }}
+
+      {% for field in form if field.widget.input_type != 'hidden' and field.name != 'password' and field.name not in
+      ['bio', 'location'] %}
+      {% for error in field.errors %}
+      <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+      {{ field(placeholder=field.label.text, class="form-control") }}
+      {% endfor %}
+
+      <!-- Render the bio field separately -->
+      <div class="form-group">
+        {{ form.bio.label }}
+        {{ form.bio(placeholder=form.bio.label.text, class="form-control") }}
+      </div>
+
+      <!-- Add location field -->
+      <div class="form-group">
+        {{ form.location.label }}
+        {{ form.location(placeholder=form.location.label.text, class="form-control") }}
+      </div>
+
+      <!-- Add a separate block for the is_private field -->
+      <div class="form-group">
+        <label for="{{ form.is_private.id }}">Profile Privacy:</label>
+        <div class="form-check">
+          {{ form.is_private(placeholder=form.is_private.label.text, class="form-check-input") }}
+          <label class="form-check-label" for="{{ form.is_private.id }}">Private</label>
+        </div>
+      </div>
+
+      <p>To confirm changes, enter your password:</p>
+      {% if form.password.errors %}
+      {% for error in form.password.errors %}
+      <span class="text-danger">
+        {{ error }}
+      </span>
+      {% endfor %}
+      {% endif %}
+      {{ form.password(placeholder="Enter your password to confirm", class="form-control") }}
+
+      <div class="edit-btn-area">
+        <button class="btn btn-success">Edit this user!</button>
+        <a href="/users/{{ user_id }}" class="btn btn-outline-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
