@@ -18,13 +18,13 @@
 
       <!-- Render the bio field separately -->
       <div class="form-group">
-        {{ form.bio.label }}
+        <!-- {{ form.bio.label }} -->
         {{ form.bio(placeholder=form.bio.label.text, class="form-control") }}
       </div>
 
       <!-- Add location field -->
       <div class="form-group">
-        {{ form.location.label }}
+        <!-- {{ form.location.label }} -->
         {{ form.location(placeholder=form.location.label.text, class="form-control") }}
       </div>
 
@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <p>To confirm changes, enter your password:</p>
+
       {% if form.password.errors %}
       {% for error in form.password.errors %}
       <span class="text-danger">

@@ -17,4 +17,5 @@ with open('generator/messages.csv') as messages:
 with open('generator/follows.csv') as follows:
     db.session.bulk_insert_mappings(Follows, DictReader(follows))
 
+
 db.session.commit()
