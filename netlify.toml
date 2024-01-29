@@ -1,2 +1,2 @@
 [build]
-  publish = "Warbler"
+  publish = "__name__"
